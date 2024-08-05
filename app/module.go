@@ -18,6 +18,7 @@ func (a *App[acc, f]) initializeModules() {
 	a.initializeDownload()
 	// initialize
 	a.Storage.Initialize(a.File.UseCase, a.Download.UseCase)
+	a.Upload.Initialize(a.Storage.UseCase, a.Download.UseCase)
 	a.Download.Initialize(a.File.UseCase, a.Storage.UseCase)
 }
 
