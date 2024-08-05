@@ -20,6 +20,10 @@ func (a *App[acc, f]) initializeGinger() {
 	a.Ginger.SetController(controller)
 }
 
+func (a *App[acc, f]) initializeGrpc() {
+	a.Grpc = a.newGrpc(a.Registry.ValueOf("gateway.grpc"))
+}
+
 func (a *App[acc, f]) initializeAuthenticator() {
 	a.Authenticator = authorization.New[acc](
 		a.Ginger, a.Registry.ValueOf("gateway.authorization"))

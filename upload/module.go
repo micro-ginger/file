@@ -6,19 +6,24 @@ import (
 	"github.com/ginger-core/log"
 	"github.com/micro-blonde/file"
 	"github.com/micro-ginger/file/upload/delivery"
+	"github.com/micro-ginger/file/upload/delivery/grpc"
 	"github.com/micro-ginger/file/upload/domain/download"
 	"github.com/micro-ginger/file/upload/domain/storage"
 )
 
 type Module[T file.Model] struct {
-	UploadHandler delivery.UploadHandler[T]
+	GrpcStoreHandler grpc.StoreHandler[T]
+	UploadHandler    delivery.UploadHandler[T]
 }
 
 func New[T file.Model](logger log.Logger, registry registry.Registry,
 	responder gateway.Responder) *Module[T] {
 	m := &Module[T]{
+		GrpcStoreHandler: grpc.NewStore[T](
+			logger.WithTrace("delivery.grpcStore"),
+		),
 		UploadHandler: delivery.NewUpload[T](
-			logger.WithTrace("handler"),
+			logger.WithTrace("delivery.uploadHandler"),
 			registry, responder,
 		),
 	}

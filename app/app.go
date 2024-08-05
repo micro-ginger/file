@@ -39,6 +39,7 @@ type App[acc account.Model, f file.Model] struct {
 	/* server */
 	Authenticator authorization.Authenticator[acc]
 	Ginger        gateway.Server
+	Grpc          GrpcServer
 }
 
 func New[acc account.Model, f file.Model](configType string) *App[acc, f] {
@@ -60,5 +61,6 @@ func (a *App[acc, f]) Initialize() {
 	a.initializeServices()
 	a.initializeDatabases()
 	a.initializeModules()
+	a.initializeGrpc()
 	a.registerRoutes()
 }

@@ -7,6 +7,7 @@ import (
 	"os"
 	"path"
 	"strings"
+	"time"
 
 	"github.com/ginger-core/errors"
 	"github.com/google/uuid"
@@ -19,14 +20,18 @@ func (uc *useCase[T]) Store(ctx context.Context,
 	hash := md5.Sum(request.Data)
 	f := &f.File[T]{
 		File: file.File[T]{
-			Id:             strings.Replace(uuid.NewString(), "-", "", 4),
-			Key:            hex.EncodeToString(hash[:]),
-			ExpirationTime: request.ExpiresAt,
-			AccountId:      request.AccountId,
-			Name:           request.Name,
-			Type:           request.Type,
+			Id:        strings.Replace(uuid.NewString(), "-", "", 4),
+			Key:       hex.EncodeToString(hash[:]),
+			AccountId: request.AccountId,
+			Name:      request.Name,
+			Type:      request.Type,
 			// Meta:           &file.Meta{},
 		},
+	}
+
+	if request.ExpiresIn != nil {
+		expAt := time.Now().UTC().Add(*request.ExpiresIn)
+		f.ExpirationTime = &expAt
 	}
 
 	resp := &file.StoreResponse[T]{
