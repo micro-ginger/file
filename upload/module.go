@@ -27,5 +27,8 @@ func New[T file.Model](logger log.Logger, registry registry.Registry,
 
 func (m *Module[T]) Initialize(storage storage.UseCase[T],
 	download download.UseCase) {
+	if m == nil {
+		return
+	}
 	m.UploadHandler.Initialize(storage, download)
 }

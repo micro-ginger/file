@@ -15,6 +15,9 @@ type config struct {
 			Languages       []string
 		}
 	}
+	Upload struct {
+		Enabled bool
+	}
 }
 
 func (a *App[acc, f]) loadConfig(configType string) {
