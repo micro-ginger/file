@@ -12,9 +12,7 @@ func (a *App[acc, f]) initializeModules() {
 	a.initializeProperties()
 	a.initializeFile()
 	a.initializeStore()
-	if a.Config.Upload.Enabled {
-		a.initializeUpload()
-	}
+	a.initializeUpload()
 	a.initializeDownload()
 	// initialize
 	a.Storage.Initialize(a.File.UseCase, a.Download.UseCase)
