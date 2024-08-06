@@ -20,6 +20,7 @@ func New(logger log.Logger) *Module {
 		UseCase: uc,
 		GrpcPropertiesHandler: grpc.NewGet(
 			logger.WithTrace("grpc.get"),
+			uc,
 		),
 	}
 	return m

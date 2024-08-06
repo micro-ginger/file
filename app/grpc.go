@@ -45,6 +45,7 @@ func (a *App[acc, f]) newGrpc(registry registry.Registry) GrpcServer {
 func (s *grpcServer) Run() errors.Error {
 	var sererOptions []grpc.ServerOption
 	s.gRpcServer = grpc.NewServer(sererOptions...)
+	file.RegisterServiceServer(s.gRpcServer, s)
 	l, err := net.Listen("tcp", s.config.ListenAddr)
 	if err != nil {
 		return errors.New(err)

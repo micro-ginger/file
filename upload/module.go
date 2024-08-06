@@ -35,5 +35,6 @@ func (m *Module[T]) Initialize(storage storage.UseCase[T],
 	if m == nil {
 		return
 	}
+	m.GrpcStoreHandler.Initialize(storage, download)
 	m.UploadHandler.Initialize(storage, download)
 }

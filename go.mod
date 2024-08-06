@@ -6,7 +6,7 @@ require (
 	github.com/BurntSushi/toml v1.3.2
 	github.com/gin-gonic/gin v1.9.1
 	github.com/ginger-core/compound/registry v0.0.0-20230608151919-2963b75416c3
-	github.com/ginger-core/errors v0.0.0-20230619094004-4101e77fb55b
+	github.com/ginger-core/errors v0.0.0-20230703084505-b10c3f9cedfb
 	github.com/ginger-core/errors/grpc v0.0.0-20230703084505-b10c3f9cedfb
 	github.com/ginger-core/gateway v0.0.0-20230608172238-cd4a0958dddc
 	github.com/ginger-core/log v0.0.0-20230608152924-6a358515e498
@@ -16,10 +16,10 @@ require (
 	github.com/ginger-repository/sql v0.0.0-20230610115917-c91b365f8490
 	github.com/google/uuid v1.6.0
 	github.com/h2non/filetype v1.1.3
-	github.com/micro-blonde/auth v0.0.0-20230804164356-42d4cccb64f5
+	github.com/micro-blonde/auth v0.0.0-20240806091223-b7cd750156a2
 	github.com/micro-blonde/auth/authorization v0.0.0-20230630082657-5b527d26afce
-	github.com/micro-blonde/file v0.0.0-20240805202442-8a837906c2e5
-	github.com/micro-blonde/file/proto v0.0.0-20240805202442-8a837906c2e5
+	github.com/micro-blonde/file v0.0.0-20240806101739-bfdb3d04ee33
+	github.com/micro-blonde/file/proto v0.0.0-20240806101739-bfdb3d04ee33
 	github.com/nicksnyder/go-i18n/v2 v2.2.1
 	golang.org/x/text v0.15.0
 	google.golang.org/grpc v1.65.0

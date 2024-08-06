@@ -14,9 +14,10 @@ type propertiesHandler struct {
 	uc     properties.UseCase
 }
 
-func NewGet(logger log.Logger) pd.GrpcPropertiesGetter {
+func NewGet(logger log.Logger, uc properties.UseCase) pd.GrpcPropertiesGetter {
 	h := &propertiesHandler{
 		logger: logger,
+		uc:     uc,
 	}
 	return h
 }
