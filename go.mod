@@ -18,7 +18,7 @@ require (
 	github.com/h2non/filetype v1.1.3
 	github.com/micro-blonde/auth v0.0.0-20240806091223-b7cd750156a2
 	github.com/micro-blonde/auth/authorization v0.0.0-20230630082657-5b527d26afce
-	github.com/micro-blonde/file v0.0.0-20240806101739-bfdb3d04ee33
+	github.com/micro-blonde/file v0.0.0-20241122150843-7855d3596bdb
 	github.com/micro-blonde/file/proto v0.0.0-20240806101739-bfdb3d04ee33
 	github.com/nicksnyder/go-i18n/v2 v2.2.1
 	golang.org/x/text v0.15.0
@@ -31,6 +31,7 @@ require (
 	github.com/cespare/xxhash/v2 v2.3.0 // indirect
 	github.com/chenzhuoyu/base64x v0.0.0-20221115062448-fe3a3abad311 // indirect
 	github.com/dgryski/go-rendezvous v0.0.0-20200823014737-9f7001d12a5f // indirect
+	github.com/disintegration/imaging v1.6.2
 	github.com/fsnotify/fsnotify v1.6.0 // indirect
 	github.com/gabriel-vasile/mimetype v1.4.2 // indirect
 	github.com/gin-contrib/sse v0.1.0 // indirect
@@ -69,6 +70,7 @@ require (
 	go.uber.org/zap v1.24.0 // indirect
 	golang.org/x/arch v0.3.0 // indirect
 	golang.org/x/crypto v0.23.0 // indirect
+	golang.org/x/image v0.0.0-20191009234506-e7c1f5e7dbb8 // indirect
 	golang.org/x/net v0.25.0 // indirect
 	golang.org/x/sys v0.20.0 // indirect
 	google.golang.org/genproto/googleapis/rpc v0.0.0-20240730163845-b1a4ccb954bf // indirect

@@ -1,5 +1,6 @@
 package usecase
 
 type config struct {
-	DirPath string
+	DirPath         string
+	TempBaseDirPath string
 }

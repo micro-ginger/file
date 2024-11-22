@@ -4,6 +4,7 @@ import (
 	"context"
 	"crypto/md5"
 	"encoding/hex"
+	"io"
 	"os"
 	"path"
 	"strings"
@@ -13,6 +14,7 @@ import (
 	"github.com/google/uuid"
 	"github.com/micro-blonde/file"
 	f "github.com/micro-ginger/file/file/domain/file"
+	"github.com/micro-ginger/file/storage/domain/storage"
 )
 
 func (uc *useCase[T]) Store(ctx context.Context,
@@ -38,11 +40,11 @@ func (uc *useCase[T]) Store(ctx context.Context,
 		File: &f.File,
 	}
 
-	sr, err := uc.saveFile(ctx, request, f)
+	sr, err := uc.SaveFile(ctx, request, f)
 	if err != nil {
 		return nil, err.WithTrace("Store.saveFile")
 	}
-	resp.AbsPath = sr.absPath
+	resp.AbsPath = sr.AbsPath
 
 	if err := uc.file.Create(ctx, f); err != nil {
 		return nil, err.WithTrace("Store.file.Create")
@@ -52,13 +54,8 @@ func (uc *useCase[T]) Store(ctx context.Context,
 	return resp, nil
 }
 
-type saveResult struct {
-	isExists bool
-	absPath  string
-}
-
-func (uc *useCase[T]) saveFile(_ context.Context,
-	request *file.StoreRequest, file *f.File[T]) (*saveResult, errors.Error) {
+func (uc *useCase[T]) SaveFile(_ context.Context,
+	request *file.StoreRequest, file *f.File[T]) (*storage.SaveResult, errors.Error) {
 	// make directory ready
 	var baseDir string
 	if request.BaseDir != nil {
@@ -66,7 +63,7 @@ func (uc *useCase[T]) saveFile(_ context.Context,
 	}
 
 	if baseDir == "" {
-		baseDir = path.Join(file.Key[:2], file.Key[2:4])
+		baseDir = uc.GetRelativeDirPath(file.Key)
 	}
 
 	fullDirPath := uc.GetAbsDirPath(baseDir)
@@ -75,29 +72,37 @@ func (uc *useCase[T]) saveFile(_ context.Context,
 	}
 
 	file.Path = path.Join(baseDir, file.Key)
-	r := &saveResult{
-		absPath: uc.GetAbsPath(file),
+	r := &storage.SaveResult{
+		AbsPath: uc.GetAbsPath(file),
 	}
 
-	fi, err := os.Stat(r.absPath)
+	fi, err := os.Stat(r.AbsPath)
 	if err != nil && !os.IsNotExist(err) {
 		return nil, errors.New(err).
 			WithTrace("os.Stat")
 	}
 	if fi != nil {
-		r.isExists = true
+		r.IsExists = true
 		return r, nil
 	}
 
 	// save file
-	fo, err := os.Create(r.absPath)
+	fo, err := os.Create(r.AbsPath)
 	if err != nil {
 		return nil, errors.New(err).WithTrace("saveFile.os.Create")
 	}
 	defer fo.Close()
-	// write data
-	if _, err := fo.Write(request.Data); err != nil {
-		return nil, errors.New(err).WithTrace("saveFile.fo.Write")
+	if request.Reader != nil {
+		_, cErr := io.Copy(fo, request.Reader)
+		if cErr != nil {
+			return nil, errors.New(cErr).
+				WithTrace("io.Copy")
+		}
+	} else {
+		// write data
+		if _, err := fo.Write(request.Data); err != nil {
+			return nil, errors.New(err).WithTrace("saveFile.fo.Write")
+		}
 	}
 	return r, nil
 }

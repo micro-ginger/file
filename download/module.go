@@ -25,7 +25,8 @@ func New[T file.Model](logger log.Logger, registry registry.Registry,
 		UseCase: uc,
 		DownloadHandler: delivery.NewDownload[T](
 			logger.WithTrace("delivery.download"),
-			responder,
+			registry,
+			uc, responder,
 		),
 	}
 	return m
