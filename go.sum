@@ -82,8 +82,8 @@ github.com/gin-contrib/sse v0.1.0 h1:Y/yl/+YNO8GZSjAhjMsSuLt29uWRFHdHYUb5lYOV9qE
 github.com/gin-contrib/sse v0.1.0/go.mod h1:RHrZQHXnP2xjPF+u1gW/2HnVO7nvIa9PG3Gm+fLHvGI=
 github.com/gin-gonic/gin v1.9.1 h1:4idEAncQnU5cB7BeOkPtxjfCSye0AAm1R0RVIqJ+Jmg=
 github.com/gin-gonic/gin v1.9.1/go.mod h1:hPrL7YrpYKXt5YId3A/Tnip5kqbEAP+KLuI3SUcPTeU=
-github.com/ginger-core/compound/registry v0.0.0-20230608151919-2963b75416c3 h1:9vWOswN0GKYE2bOOB/LeB1/WBdR0N+4eh9odxv6/Vxk=
-github.com/ginger-core/compound/registry v0.0.0-20230608151919-2963b75416c3/go.mod h1:iGQS/Lk9CnjRmMnRlEM4mQNnndpa+h+u9aVj0Fjyuoo=
+github.com/ginger-core/compound/registry v0.0.0-20240818050802-b0b3deeff892 h1:+S+Ru8Efxmcor26GxLmyGxAtTeExIZ/Y1v/XsxygG7o=
+github.com/ginger-core/compound/registry v0.0.0-20240818050802-b0b3deeff892/go.mod h1:iGQS/Lk9CnjRmMnRlEM4mQNnndpa+h+u9aVj0Fjyuoo=
 github.com/ginger-core/errors v0.0.0-20230703084505-b10c3f9cedfb h1:akBGMOMV7nOA5GAiav1HCQ9+fg4SmJKDlORYzgXBw8Q=
 github.com/ginger-core/errors v0.0.0-20230703084505-b10c3f9cedfb/go.mod h1:cWRsvoY6zQYQoDdg/8NqUC5r47R4tUs+uLEugCbCjqo=
 github.com/ginger-core/errors/grpc v0.0.0-20230703084505-b10c3f9cedfb h1:0CQsO/MKgQmne0MuS5UOAOODkRFpYP5xogKoTdPUdy4=

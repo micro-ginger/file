@@ -42,11 +42,11 @@ type App[acc account.Model, f file.Model] struct {
 	Grpc          GrpcServer
 }
 
-func New[acc account.Model, f file.Model](configType string) *App[acc, f] {
+func New[acc account.Model, f file.Model]() *App[acc, f] {
 	a := &App[acc, f]{
 		Language: i18n.NewBundle(language.English),
 	}
-	a.loadConfig(configType)
+	a.loadConfig()
 
 	if err := a.Registry.Unmarshal(&a.Config); err != nil {
 		panic(err)

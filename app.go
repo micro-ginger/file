@@ -6,6 +6,6 @@ import (
 	"github.com/micro-ginger/file/app"
 )
 
-func NewApp[acc account.Model, f file.Model](configType string) app.Application {
-	return app.New[acc, f](configType)
+func NewApp[acc account.Model, f file.Model]() app.Application {
+	return app.New[acc, f]()
 }
